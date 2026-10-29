@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-     <div class="slick__slide slide slide--0">      <div class="slide__content">              
+    </div>
+</section>
+  </div>
+	
+		</div>
+	</div>
+
+	<div class="container banner-slider-container">
+		  <div class="region region-slider">
+    <section id="block-views-frontpage-banner-carousal-block" class="block block-views clearfix">
+
+      
+  <div class="view view-frontpage-banner-carousal view-id-frontpage_banner_carousal view-display-id-block view-dom-id-923a7800736db6eaf5da046961ac31b2">
+        
+  
+  
+      <div class="view-content">
+            <div class="slick slick--skin--classic slick--optionset--default" id="slick-views-frontpage-banner-carousal-1">
+      <div class="slick__slider" id="slick-views-frontpage-banner-carousal-1-slider">
+  
+          <div class="slick__slide slide slide--0">      <div class="slide__content">              
   <div class="views-field views-field-field-banner-image">        <div class="field-content"><a href="/tc/banner-slider/%E3%80%8C%E7%AC%AC%E4%BA%8C%E5%B1%86%E9%9A%A8%E8%BA%AB%E6%9B%B8%E5%A5%BD%E8%AE%80%E3%80%8D%E9%81%B8%E8%88%89"><img typeof="foaf:Image" class="img-responsive" src="https://www.ltmps.edu.hk/sites/ltmps_edu/files/styles/banner_slider_img/public/kh_edu_banner/2627%E6%8E%A8%E8%96%A6%E5%A5%BD%E8%AE%80%E9%9A%A8%E8%BA%AB%E6%9B%B8.png?itok=4Cnslsoy" width="1140" height="412" alt="" /></a></div>  </div>  
   <div class="views-field views-field-title">        <span class="field-content">「第二屆隨身書好讀」選舉</span>  </div>            
       
