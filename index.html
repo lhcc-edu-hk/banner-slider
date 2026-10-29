@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LTMPS Infinite Linked Banner Slider System</title>
+    <title>LTMPS Infinite Linked Slider System</title>
     <style>
         * {
             box-sizing: border-box;
@@ -21,12 +21,12 @@
             padding: 20px;
         }
 
-        /* Outer slider viewport box */
+        /* Outer viewport box */
         .ltmps-slider-viewport {
             position: relative;
             width: 100%;
             max-width: 1000px;
-            aspect-ratio: 1000 / 395; /* Exact layout ratio from the school site */
+            aspect-ratio: 1000 / 395; 
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background-color: #ffffff;
@@ -40,38 +40,31 @@
             height: 100%;
         }
 
-        /* Individual slide panels */
-        .ltmps-slide-panel {
+        /* Slide panels (linked wrapper) */
+        .ltmps-slide-link {
             width: 100%;
             height: 100%;
             flex-shrink: 0;
             position: relative;
-        }
-
-        /* Clickable image link wrappers */
-        .ltmps-slide-panel a {
             display: block;
-            width: 100%;
-            height: 100%;
             text-decoration: none;
-            cursor: pointer;
         }
 
-        .ltmps-slide-panel img {
+        .ltmps-slide-link img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        /* Precise bottom teal caption overlay bar */
+        /* Bottom dark teal caption overlay bar */
         .ltmps-caption-bar {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 46px;
-            background-color: rgba(4, 67, 67, 0.85); /* Dark semi-transparent teal */
+            background-color: rgba(4, 67, 67, 0.85); 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,10 +73,9 @@
             font-weight: 500;
             letter-spacing: 0.5px;
             z-index: 5;
-            pointer-events: none;
         }
 
-        /* Navigation Arrows on Left and Right sides */
+        /* Navigation Arrows */
         .ltmps-arrow-btn {
             position: absolute;
             top: 50%;
@@ -112,7 +104,7 @@
         .arrow-left { left: 15px; }
         .arrow-right { right: 15px; }
 
-        /* Indicator Pagination Dots Panel inside the teal bar */
+        /* Indicator Pagination Dots Panel */
         .ltmps-indicator-panel {
             position: absolute;
             bottom: 12px;
@@ -149,10 +141,10 @@
         <!-- Dynamic Dots Section -->
         <div class="ltmps-indicator-panel" id="dotsContainer"></div>
 
-        <!-- Sliding Rail containing school photos -->
+        <!-- Sliding Rail containing linked school photos -->
         <div class="ltmps-slider-rail" id="sliderRail">
-
-            <!-- Photo 1: 最受歡迎隨身書選舉 -->
+            
+           <!-- Photo 1: 最受歡迎隨身書選舉 -->
             <div class="ltmps-slide-panel">
                 <a href="https://ltmps.edu.hk" target="_blank">
                     <img src="image_gt97by.png" alt="「最受歡迎隨身書」選舉">
@@ -212,10 +204,11 @@
         </div>
     </div>
 
+
+
     <script>
-        const viewport = document.getElementById('sliderViewport');
         const rail = document.getElementById('sliderRail');
-        const originalSlides = document.querySelectorAll('.ltmps-slide-panel');
+        const originalSlides = document.querySelectorAll('.ltmps-slide-link');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const dotsContainer = document.getElementById('dotsContainer');
@@ -223,13 +216,13 @@
         let currentIndex = 0;
         const totalOriginalSlides = originalSlides.length;
         let slideInterval;
-        const slideDuration = 4000; // Slide holds for 4 seconds
+        const slideDuration = 5000; // Perfect 5-second interval timer
 
-        // 1. Create Seamless Loop Clone (Clone the first slide and add to the absolute end)
+        // 1. Create seamless loop by cloning Slide 1 and sticking it to the end
         const firstSlideClone = originalSlides[0].cloneNode(true);
         rail.appendChild(firstSlideClone);
 
-        // 2. Generate Interactive Pagination Dots dynamically based on count
+        // 2. Build the navigation dots
         for (let i = 0; i < totalOriginalSlides; i++) {
             const dot = document.createElement('div');
             dot.classList.add('ltmps-dot-marker');
@@ -239,7 +232,7 @@
         }
         const dots = document.querySelectorAll('.ltmps-dot-marker');
 
-        // 3. Movement Engine Function
+        // 3. Slider engine
         function updateSliderPosition(withTransition = true) {
             if (withTransition) {
                 rail.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
@@ -265,11 +258,12 @@
             currentIndex++;
             updateSliderPosition(true);
 
+            // Smooth snap reset at the loop point
             if (currentIndex === totalOriginalSlides) {
                 setTimeout(() => {
                     currentIndex = 0;
-                    updateSliderPosition(false); 
-                }, 600); 
+                    updateSliderPosition(false); // Snaps back instantly without backward animation
+                }, 600); // Wait for the 0.6s transition to finish
             }
         }
 
@@ -294,3 +288,19 @@
         }
 
         // 4. Timer Controls
+        function startAutoplay() {
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        function resetAutoplay() {
+            clearInterval(slideInterval);
+            startAutoplay();
+        }
+
+        nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+        startAutoplay();
+    </script>
+</body>
+</html>
